@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 264 70% 98%;
+    --foreground: 264 10% 20%;
+    --card: 264 0% 100%;
+    --card-foreground: 264 10% 15%;
+    --popover: 264 0% 100%;
+    --popover-foreground: 264 10% 15%;
+    --primary: 262 80% 58%;
+    --primary-foreground: 264 20% 98%;
+    --secondary: 264 20% 94%;
+    --secondary-foreground: 264 10% 10%;
+    --muted: 264 20% 94%;
+    --muted-foreground: 264 10% 45%;
+    --accent: 264 20% 90%;
+    --accent-foreground: 264 10% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 264 20% 85%;
+    --input: 264 20% 92%;
+    --ring: 262 80% 58%;
+    --radius: 0.5rem;
+    --chart-1: 262 80% 58%;
+    --chart-2: 170 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 350 75% 60%;
+  }
+
+  .dark {
+    --background: 264 15% 10%;
+    --foreground: 264 10% 85%;
+    --card: 264 15% 15%;
+    --card-foreground: 264 10% 85%;
+    --popover: 264 15% 10%;
+    --popover-foreground: 264 10% 85%;
+    --primary: 262 80% 65%;
+    --primary-foreground: 264 10% 5%;
+    --secondary: 264 15% 25%;
+    --secondary-foreground: 264 10% 85%;
+    --muted: 264 15% 25%;
+    --muted-foreground: 264 10% 55%;
+    --accent: 264 15% 30%;
+    --accent-foreground: 264 10% 95%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 264 15% 30%;
+    --input: 264 15% 30%;
+    --ring: 262 80% 65%;
+    --chart-1: 262 80% 65%;
+    --chart-2: 170 50% 60%;
+    --chart-3: 30 70% 65%;
+    --chart-4: 280 60% 65%;
+    --chart-5: 350 70% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .animate-blink-cursor {
+    animation: blink 1s infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .animate-text-shimmer {
+    background: linear-gradient(110deg, hsl(var(--primary)), 45%, #B290C8, 55%, hsl(var(--primary)));
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: text-shimmer 5s linear infinite;
+  }
+  @keyframes text-shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+
+  @keyframes roll-in {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes roll-out {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+  }
+
+  .animate-roll-in {
+    animation: roll-in 0.5s ease-out forwards;
+  }
+
+  .animate-roll-out {
+    animation: roll-out 0.5s ease-in-out forwards;
+  }
+  
+  .animated-gradient-background {
+    background: linear-gradient(
+      -45deg,
+      hsl(var(--background)),
+      hsl(var(--primary) / 0.3),
+      hsl(var(--secondary)),
+      hsl(var(--primary) / 0.3),
+      hsl(var(--background))
+    );
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+
+  /* Custom Hover Animations */
+  @keyframes ring-bell {
+    0% { transform: rotate(0); }
+    10% { transform: rotate(14deg); }
+    20% { transform: rotate(-8deg); }
+    30% { transform: rotate(14deg); }
+    40% { transform: rotate(-4deg); }
+    50% { transform: rotate(10deg); }
+    60% { transform: rotate(0); }
+    100% { transform: rotate(0); }
+  }
+  .hover-animate-ring:hover svg {
+    animation: ring-bell 1s ease-in-out;
+  }
+  
+  @keyframes scan-line {
+    0% { transform: translateY(12px); opacity: 0; }
+    20% { transform: translateY(12px); opacity: 1; }
+    80% { transform: translateY(-12px); opacity: 1; }
+    100% { transform: translateY(-12px); opacity: 0; }
+  }
+  .hover-animate-scan .scan-line-inner {
+    display: none;
+  }
+  .hover-animate-scan:hover .scan-line-inner {
+    display: block;
+    animation: scan-line 0.8s ease-out;
+  }
+
+  @keyframes spin-theme {
+    from { transform: rotate(0deg) scale(1); }
+    to { transform: rotate(360deg) scale(1); }
+  }
+  .hover-animate-spin:hover .icon-sun,
+  .hover-animate-spin:hover .icon-moon {
+    animation: spin-theme 0.6s ease-in-out;
+  }
+
+  @keyframes unlock-shackle {
+      0% { transform: translateY(0) rotate(0); }
+      25% { transform: translateY(-20%) rotate(0); }
+      50% { transform: translateY(-20%) rotate(-15deg); }
+      100% { transform: translateY(0) rotate(0); }
+  }
+  .hover-animate-lock:hover .lock-shackle {
+      animation: unlock-shackle 0.7s ease-in-out;
+  }
+}

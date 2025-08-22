@@ -183,8 +183,8 @@ export function Header() {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                 <Button variant="ghost" size="icon">
-                    <Users className="h-[1.2rem] w-[1.2rem]" />
+                 <Button variant="ghost" size="icon" className="hover-animate-lock">
+                    <LogOut className="h-[1.2rem] w-[1.2rem] lock-shackle" />
                     <span className="sr-only">User Menu</span>
                 </Button>
               </DropdownMenuTrigger>
